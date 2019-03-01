@@ -799,7 +799,7 @@ namespace ARSoft.Tools.Net.Dns
 
 		private static readonly IPAddress _ipvMappedNetworkAddress = IPAddress.Parse("0:0:0:0:0:FFFF::");
 
-		private static bool IsAnyIPv6Configured()
+		public static bool IsAnyIPv6Configured()
 		{
 			return NetworkInterface.GetAllNetworkInterfaces()
 				.Where(n => (n.OperationalStatus == OperationalStatus.Up) && (n.NetworkInterfaceType != NetworkInterfaceType.Loopback))
