@@ -21,7 +21,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Org.BouncyCastle.Crypto.Digests;
-using Org.BouncyCastle.Security;
 using Org.BouncyCastle.X509;
 using X509Certificate = System.Security.Cryptography.X509Certificates.X509Certificate;
 
@@ -229,7 +228,7 @@ namespace ARSoft.Tools.Net.Dns
 					break;
 
 				case TlsaSelector.SubjectPublicKeyInfo:
-					selectedBytes = SubjectPublicKeyInfoFactory.CreateSubjectPublicKeyInfo(DotNetUtilities.FromX509Certificate(certificate).GetPublicKey()).GetDerEncoded();
+					selectedBytes = SubjectPublicKeyInfoFactory.CreateSubjectPublicKeyInfo(new X509CertificateParser().ReadCertificate(certificate.GetRawCertData()).GetPublicKey()).GetDerEncoded();
 					break;
 
 				default:
